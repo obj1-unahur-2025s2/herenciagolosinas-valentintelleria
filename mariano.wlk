@@ -1,7 +1,7 @@
 import golosinas.*
 
 object mariano {
-	const golosinas = []
+	var golosinas = []
 	 
 	method comprar(_golosina) { golosinas.add(_golosina) }
 	
@@ -10,7 +10,7 @@ object mariano {
 	method golosinas() { return golosinas }
 	method primerGolosina() { return golosinas.first() }
 	method ultimaGolosina() { return golosinas.last() }
-	
+
 	method pesoGolosinas() { 
 		return golosinas.sum({ golo => golo.peso() })
 	}
@@ -62,5 +62,18 @@ object mariano {
 	
 	method tieneGolosinaDeSabor(_sabor) {
 		return golosinas.any({_golosina => _golosina.sabor() == _sabor})
+	}
+
+	method comprarBombon() { golosinas.add(new Bombon()) }
+	method comprarChocolatin(pesoDeChocolatin) { golosinas.add(new Chocolatin(pesoInicial = pesoDeChocolatin)) }
+	method comprarCaramelo(unSabor) { golosinas.add(new Caramelo(sabor = unSabor )) }
+	method comprarAlfajor() { golosinas.add(new Alfajor()) }
+	method comprarChupetin() { golosinas.add(new Chupetin()) }
+	method comprarOblea() { golosinas.add(new Oblea()) }
+	method comprarGolosinaBaniada(golosinaABaniar) { golosinas.add(new GolosinaBaniada(golosinaInterior = golosinaABaniar)) }
+	method comprarTuttifrutti(libreDeGlutenTrueOFalse) { golosinas.add(new Tuttifrutti(libreDeGluten = libreDeGlutenTrueOFalse)) }
+
+	method baniar(unaGolosina) {
+		self.comprarGolosinaBaniada(unaGolosina)
 	}
 }
